@@ -590,14 +590,16 @@ export default function TransferUniverse() {
             />
 
             <OperatorNode
-              name="Wave"
-              logo={waveLogo}
-              operator="wave"
-              position="
-                right-[0%]
-                top-1/2
-                -translate-y-1/2
-              "
+                name="Wave"
+                logo={waveLogo}
+                operator="wave"
+                position="
+                    right-[16%]
+                    top-1/2
+                    -translate-y-1/2
+
+                    sm:right-[0%]
+                "
             />
 
             <OperatorNode
@@ -612,15 +614,17 @@ export default function TransferUniverse() {
             />
 
             <OperatorNode
-              name="MTN MoMo"
-              logo={mtnLogo}
-              operator="mtn"
-              position="
-                left-[0%]
-                top-1/2
-                -translate-y-1/2
-              "
-            />
+                name="MTN MoMo"
+                logo={mtnLogo}
+                operator="mtn"
+                position="
+                    left-[16%]
+                    top-1/2
+                    -translate-y-1/2
+
+                    sm:left-[0%]
+                "
+                />
           </div>
 
           {/* =================================================

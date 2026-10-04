@@ -6,7 +6,6 @@ import {
   BadgeCheck,
   Coins,
   Phone,
-  Radio,
   Smartphone,
   Wifi,
 } from 'lucide-react';

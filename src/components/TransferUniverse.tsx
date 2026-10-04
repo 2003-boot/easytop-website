@@ -1,23 +1,56 @@
 import { useEffect, useRef } from 'react';
-import { ArrowUpRight, MoveRight } from 'lucide-react';
+
+import {
+  ArrowDownToLine,
+  ArrowUpRight,
+  BadgeCheck,
+  Coins,
+  Phone,
+  Radio,
+  Smartphone,
+  Wifi,
+} from 'lucide-react';
+
 import gsap from 'gsap';
 
 import easytopIcon from '../assets/easytop-icon.jpg';
-import orangeLogo from '../assets/orange-money.png';
-import mtnLogo from '../assets/mtn-momo.jpg';
-import moovLogo from '../assets/moov-money.webp';
-import waveLogo from '../assets/wave.png';
+
+/*
+ * =========================================================
+ * CONFIGURATION
+ * =========================================================
+ *
+ * Quand l'APK Agent sera disponible, remplace simplement
+ * cette valeur par son URL de téléchargement.
+ *
+ * Exemple :
+ * const AGENT_APP_DOWNLOAD_URL =
+ *   'https://easytop.org/downloads/easytop-agent.apk';
+ */
+const AGENT_APP_DOWNLOAD_URL = '';
+
+type LucideIcon = typeof Smartphone;
+
+type AgentNodeProps = {
+  title: string;
+  subtitle: string;
+  icon: LucideIcon;
+  node: string;
+  position: string;
+};
 
 export default function TransferUniverse() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const universeRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef =
+    useRef<HTMLElement | null>(null);
+
+  const universeRef =
+    useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       /*
-       * Mouvement très léger de l'univers.
-       * Les logos ne tournent pas sur eux-mêmes :
-       * l'ensemble "respire".
+       * Mouvement général très léger.
+       * L'univers EasyTop Agent "respire".
        */
       gsap.to(universeRef.current, {
         y: -8,
@@ -28,48 +61,70 @@ export default function TransferUniverse() {
       });
 
       /*
-       * Petites pulsations indépendantes.
+       * Petites pulsations indépendantes
+       * des différents services.
        */
-      gsap.to('[data-operator="orange"]', {
-        y: -6,
-        duration: 2.8,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+      gsap.to(
+        '[data-agent-node="order"]',
+        {
+          y: -6,
+          duration: 2.8,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        }
+      );
 
-      gsap.to('[data-operator="mtn"]', {
-        y: 7,
-        duration: 3.3,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+      gsap.to(
+        '[data-agent-node="credit"]',
+        {
+          x: 6,
+          duration: 3.3,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        }
+      );
 
-      gsap.to('[data-operator="moov"]', {
-        x: 5,
-        duration: 3.6,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+      gsap.to(
+        '[data-agent-node="internet"]',
+        {
+          y: 7,
+          duration: 3.6,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        }
+      );
 
-      gsap.to('[data-operator="wave"]', {
-        x: -5,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+      gsap.to(
+        '[data-agent-node="voice"]',
+        {
+          x: -6,
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handleDownload = () => {
+    if (!AGENT_APP_DOWNLOAD_URL) {
+      return;
+    }
+
+    window.location.href =
+      AGENT_APP_DOWNLOAD_URL;
+  };
+
   return (
     <section
       ref={sectionRef}
-      id="transferts"
+      id="partenaires"
       className="
         section
         relative
@@ -139,7 +194,7 @@ export default function TransferUniverse() {
                 "
               />
 
-              Transfert inter-opérateur
+              Devenez partenaire
             </div>
 
             <p
@@ -151,9 +206,10 @@ export default function TransferUniverse() {
                 text-[var(--muted)]
               "
             >
-              Un même espace pour faire circuler votre
-              argent entre différents services de mobile
-              money.
+              Vous êtes cabiniste ? Rejoignez
+              le réseau EasyTop et recevez des
+              commandes directement depuis
+              notre application Agent.
             </p>
           </div>
 
@@ -165,17 +221,17 @@ export default function TransferUniverse() {
               lg:ml-auto
             "
           >
-            Des réseaux différents.
+            Votre activité.
             <br />
 
             <span className="text-[var(--blue)]">
-              Une seule trajectoire.
+              Plus d'opportunités avec EasyTop.
             </span>
           </h2>
         </div>
 
         {/* =================================================
-            UNIVERSE
+            AGENT UNIVERSE
         ================================================== */}
 
         <div
@@ -241,11 +297,11 @@ export default function TransferUniverse() {
                 text-[var(--faint)]
               "
             >
-              EasyTop Network
+              EasyTop Agent
             </span>
           </div>
 
-          {/* Counter decoration */}
+          {/* Partner status */}
 
           <div
             className="
@@ -269,20 +325,61 @@ export default function TransferUniverse() {
                 text-[var(--faint)]
               "
             >
-              Réseaux connectés
+              Réseau partenaire
             </p>
 
-            <p
+            <div
               className="
-                mt-1
-                text-2xl
-                font-bold
-                tracking-[-0.05em]
-                text-[var(--ink)]
+                mt-2
+                flex
+                items-center
+                justify-end
+                gap-2
               "
             >
-              04
-            </p>
+              <span
+                className="
+                  relative
+                  flex
+                  h-2.5
+                  w-2.5
+                "
+              >
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-[var(--blue)]
+                    opacity-30
+                  "
+                />
+
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    h-2.5
+                    w-2.5
+                    rounded-full
+                    bg-[var(--blue)]
+                  "
+                />
+              </span>
+
+              <span
+                className="
+                  text-sm
+                  font-bold
+                  text-[var(--ink)]
+                "
+              >
+                EasyTop
+              </span>
+            </div>
           </div>
 
           {/* =================================================
@@ -363,7 +460,7 @@ export default function TransferUniverse() {
             >
               <defs>
                 <linearGradient
-                  id="easytop-route"
+                  id="easytop-agent-route"
                   x1="0"
                   y1="0"
                   x2="1"
@@ -378,7 +475,7 @@ export default function TransferUniverse() {
                   <stop
                     offset="50%"
                     stopColor="#1597F5"
-                    stopOpacity="0.65"
+                    stopOpacity="0.7"
                   />
 
                   <stop
@@ -389,43 +486,40 @@ export default function TransferUniverse() {
                 </linearGradient>
               </defs>
 
-              {/* Orange -> Wave */}
+              {/*
+               * Les quatre routes convergent
+               * vers EasyTop Agent.
+               */}
 
               <path
-                d="M350 92 C570 100 640 260 602 350"
-                stroke="url(#easytop-route)"
+                d="M350 92 C350 175 350 235 350 300"
+                stroke="url(#easytop-agent-route)"
                 strokeWidth="1.5"
                 strokeDasharray="5 8"
               />
 
-              {/* Wave -> Moov */}
-
               <path
-                d="M602 350 C610 550 470 635 350 610"
-                stroke="url(#easytop-route)"
+                d="M602 350 C520 350 450 350 400 350"
+                stroke="url(#easytop-agent-route)"
                 strokeWidth="1.5"
                 strokeDasharray="5 8"
               />
 
-              {/* Moov -> MTN */}
-
               <path
-                d="M350 610 C120 625 65 455 98 350"
-                stroke="url(#easytop-route)"
+                d="M350 610 C350 525 350 465 350 400"
+                stroke="url(#easytop-agent-route)"
                 strokeWidth="1.5"
                 strokeDasharray="5 8"
               />
 
-              {/* MTN -> Orange */}
-
               <path
-                d="M98 350 C85 155 230 80 350 92"
-                stroke="url(#easytop-route)"
+                d="M98 350 C180 350 250 350 300 350"
+                stroke="url(#easytop-agent-route)"
                 strokeWidth="1.5"
                 strokeDasharray="5 8"
               />
 
-              {/* Animated signal 1 */}
+              {/* Signal : nouvelle commande */}
 
               <circle
                 r="5"
@@ -433,13 +527,29 @@ export default function TransferUniverse() {
                 className="transfer-signal"
               >
                 <animateMotion
-                  dur="4.2s"
+                  dur="3.6s"
                   repeatCount="indefinite"
-                  path="M350 92 C570 100 640 260 602 350"
+                  path="M350 92 C350 175 350 235 350 300"
                 />
               </circle>
 
-              {/* Animated signal 2 */}
+              {/* Signal : achat d'unité */}
+
+              <circle
+                r="4"
+                fill="#1597F5"
+                opacity="0.7"
+                className="transfer-signal"
+              >
+                <animateMotion
+                  dur="4.2s"
+                  begin="0.8s"
+                  repeatCount="indefinite"
+                  path="M602 350 C520 350 450 350 400 350"
+                />
+              </circle>
+
+              {/* Signal : pass internet */}
 
               <circle
                 r="4"
@@ -448,32 +558,32 @@ export default function TransferUniverse() {
                 className="transfer-signal"
               >
                 <animateMotion
-                  dur="5s"
-                  begin="1.2s"
+                  dur="4s"
+                  begin="1.6s"
                   repeatCount="indefinite"
-                  path="M602 350 C610 550 470 635 350 610"
+                  path="M350 610 C350 525 350 465 350 400"
                 />
               </circle>
 
-              {/* Animated signal 3 */}
+              {/* Signal : pass appel */}
 
               <circle
                 r="4"
                 fill="#102033"
-                opacity="0.5"
+                opacity="0.45"
                 className="transfer-signal"
               >
                 <animateMotion
-                  dur="4.6s"
-                  begin="2s"
+                  dur="4.5s"
+                  begin="2.2s"
                   repeatCount="indefinite"
-                  path="M350 610 C120 625 65 455 98 350"
+                  path="M98 350 C180 350 250 350 300 350"
                 />
               </circle>
             </svg>
 
             {/* =================================================
-                CENTER — EASYTOP PLANET
+                CENTER — EASYTOP AGENT
             ================================================== */}
 
             <div
@@ -505,7 +615,7 @@ export default function TransferUniverse() {
                 "
               />
 
-              {/* Rings */}
+              {/* Outer ring */}
 
               <div
                 className="
@@ -523,6 +633,8 @@ export default function TransferUniverse() {
                   sm:w-[230px]
                 "
               />
+
+              {/* Inner surface */}
 
               <div
                 className="
@@ -544,7 +656,7 @@ export default function TransferUniverse() {
                 "
               />
 
-              {/* App icon */}
+              {/* EasyTop app icon */}
 
               <div
                 className="
@@ -557,6 +669,7 @@ export default function TransferUniverse() {
                   border-white
                   bg-white
                   shadow-[0_20px_50px_rgba(0,100,170,0.18)]
+
                   sm:h-[125px]
                   sm:w-[125px]
                   sm:rounded-[30px]
@@ -572,40 +685,88 @@ export default function TransferUniverse() {
                   "
                 />
               </div>
+
+              {/* Agent badge */}
+
+              <div
+                className="
+                  absolute
+                  -bottom-11
+                  left-1/2
+                  flex
+                  -translate-x-1/2
+                  items-center
+                  gap-2
+                  whitespace-nowrap
+                  rounded-full
+                  border
+                  border-white
+                  bg-white/95
+                  px-4
+                  py-2
+                  shadow-[0_10px_30px_rgba(16,32,51,0.10)]
+                  backdrop-blur
+                "
+              >
+                <Smartphone
+                  className="
+                    h-3.5
+                    w-3.5
+                    text-[var(--blue)]
+                  "
+                />
+
+                <span
+                  className="
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-[0.12em]
+                    text-[var(--ink)]
+                  "
+                >
+                  EasyTop Agent
+                </span>
+              </div>
             </div>
 
             {/* =================================================
-                OPERATORS
+                AGENT SERVICES
             ================================================== */}
 
-            <OperatorNode
-              name="Orange Money"
-              logo={orangeLogo}
-              operator="orange"
+            <AgentNode
+              title="Pass appel"
+              subtitle="Voix"
+              icon={Phone}
+              node="voice"
               position="
-                left-1/2
-                top-[2%]
-                -translate-x-1/2
+                left-[16%]
+                top-1/2
+                -translate-y-1/2
+
+                sm:left-[0%]
               "
             />
 
-            <OperatorNode
-                name="Wave"
-                logo={waveLogo}
-                operator="wave"
-                position="
-                    right-[16%]
-                    top-1/2
-                    -translate-y-1/2
+            <AgentNode
+              title="Achat d'unité"
+              subtitle="Recharge"
+              icon={Coins}
+              node="credit"
+              position="
+                right-[16%]
+                top-1/2
+                -translate-y-1/2
 
-                    sm:right-[0%]
-                "
+                sm:right-[0%]
+              "
             />
 
-            <OperatorNode
-              name="Moov Money"
-              logo={moovLogo}
-              operator="moov"
+            <AgentNode
+              title="Pass internet"
+              subtitle="Data"
+              icon={Wifi}
+              node="internet"
               position="
                 bottom-[0%]
                 left-1/2
@@ -613,18 +774,19 @@ export default function TransferUniverse() {
               "
             />
 
-            <OperatorNode
-                name="MTN MoMo"
-                logo={mtnLogo}
-                operator="mtn"
-                position="
-                    left-[16%]
-                    top-1/2
-                    -translate-y-1/2
+            <AgentNode
+              title="Pass appel"
+              subtitle="Voix"
+              icon={Phone}
+              node="voice"
+              position="
+                left-[16%]
+                top-1/2
+                -translate-y-1/2
 
-                    sm:left-[0%]
-                "
-                />
+                sm:left-[0%]
+              "
+            />
           </div>
 
           {/* =================================================
@@ -660,20 +822,11 @@ export default function TransferUniverse() {
                 backdrop-blur-xl
               "
             >
-              <span
-                className="
-                  text-xs
-                  font-bold
-                  text-[var(--ink)]
-                "
-              >
-                Un opérateur
-              </span>
-
-              <MoveRight
+              <BadgeCheck
                 className="
                   h-4
                   w-4
+                  shrink-0
                   text-[var(--blue)]
                 "
               />
@@ -685,14 +838,14 @@ export default function TransferUniverse() {
                   text-[var(--ink)]
                 "
               >
-                un autre
+                Rejoignez le réseau EasyTop
               </span>
             </div>
           </div>
         </div>
 
         {/* =================================================
-            EXPLANATION
+            EXPLANATION / DOWNLOAD
         ================================================== */}
 
         <div
@@ -714,11 +867,11 @@ export default function TransferUniverse() {
               text-[var(--ink)]
             "
           >
-            Envoyez depuis votre réseau.
+            Vos services.
             <br />
 
             <span className="text-[var(--faint)]">
-              Recevez sur un autre.
+              Les commandes EasyTop en plus.
             </span>
           </p>
 
@@ -739,71 +892,119 @@ export default function TransferUniverse() {
                 text-[var(--muted)]
               "
             >
-              EasyTop est pensé pour simplifier les échanges
-              entre les différents services de mobile money,
-              depuis une expérience unique.
+              Téléchargez EasyTop Agent,
+              créez votre compte et configurez
+              les opérateurs que vous utilisez
+              pour rejoindre le réseau des
+              partenaires EasyTop.
             </p>
 
-            <a
-              href="#telecharger"
-              className="
-                group
-                inline-flex
-                items-center
-                gap-3
-                text-sm
-                font-bold
-                text-[var(--ink)]
-              "
-            >
-              Découvrir le transfert
-
-              <span
+            {AGENT_APP_DOWNLOAD_URL ? (
+              <a
+                href={AGENT_APP_DOWNLOAD_URL}
+                download
                 className="
-                  flex
-                  h-10
-                  w-10
+                  group
+                  inline-flex
                   items-center
-                  justify-center
+                  gap-3
                   rounded-full
                   bg-[var(--blue)]
+                  px-5
+                  py-3
+                  text-sm
+                  font-bold
                   text-white
-                  transition-transform
+                  shadow-[0_12px_30px_rgba(21,151,245,0.22)]
+                  transition-all
                   duration-300
-                  group-hover:rotate-45
+                  hover:-translate-y-0.5
+                  hover:shadow-[0_16px_38px_rgba(21,151,245,0.28)]
                 "
               >
-                <ArrowUpRight className="h-4 w-4" />
-              </span>
-            </a>
+                <ArrowDownToLine className="h-4 w-4" />
+
+                Télécharger l'application Agent
+
+                <span
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-white/15
+                    transition-transform
+                    duration-300
+                    group-hover:rotate-45
+                  "
+                >
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={handleDownload}
+                disabled
+                className="
+                  inline-flex
+                  cursor-not-allowed
+                  items-center
+                  gap-3
+                  rounded-full
+                  bg-[var(--blue)]
+                  px-5
+                  py-3
+                  text-sm
+                  font-bold
+                  text-white
+                  opacity-55
+                "
+                title="Le téléchargement sera bientôt disponible"
+              >
+                <ArrowDownToLine className="h-4 w-4" />
+
+                Télécharger l'application Agent
+
+                <span
+                  className="
+                    rounded-full
+                    bg-white/15
+                    px-2.5
+                    py-1
+                    text-[9px]
+                    font-bold
+                    uppercase
+                    tracking-[0.1em]
+                  "
+                >
+                  Bientôt
+                </span>
+              </button>
+            )}
           </div>
         </div>
-
       </div>
     </section>
   );
 }
 
 /* =========================================================
-   OPERATOR NODE
+   AGENT NODE
    ========================================================= */
 
-type OperatorNodeProps = {
-  name: string;
-  logo: string;
-  operator: string;
-  position: string;
-};
-
-function OperatorNode({
-  name,
-  logo,
-  operator,
+function AgentNode({
+  title,
+  subtitle,
+  icon: Icon,
+  node,
   position,
-}: OperatorNodeProps) {
+}: AgentNodeProps) {
   return (
     <div
-      data-operator={operator}
+      data-agent-node={node}
       className={`
         absolute
         z-30
@@ -821,17 +1022,16 @@ function OperatorNode({
       >
         <div
           className="
+            relative
             flex
             h-[78px]
             w-[78px]
             items-center
             justify-center
-            overflow-hidden
             rounded-[22px]
             border-[5px]
             border-white
             bg-white
-            p-1
             shadow-[0_18px_50px_rgba(16,32,51,0.12)]
             transition-all
             duration-300
@@ -843,37 +1043,86 @@ function OperatorNode({
             sm:rounded-[26px]
           "
         >
-          <img
-            src={logo}
-            alt={name}
+          <div
             className="
-              h-full
-              w-full
-              rounded-[16px]
-              object-contain
+              absolute
+              inset-[7px]
+              rounded-[17px]
+              bg-[rgba(21,151,245,0.08)]
+
+              sm:rounded-[20px]
             "
           />
+
+          <Icon
+            strokeWidth={1.8}
+            className="
+              relative
+              z-10
+              h-7
+              w-7
+              text-[var(--blue)]
+
+              sm:h-8
+              sm:w-8
+            "
+          />
+
+          {node === 'order' && (
+            <span
+              className="
+                absolute
+                right-[7px]
+                top-[7px]
+                h-2.5
+                w-2.5
+                rounded-full
+                border-2
+                border-white
+                bg-[var(--blue)]
+              "
+            />
+          )}
         </div>
 
-        <span
+        <div
           className="
             whitespace-nowrap
-            rounded-full
+            rounded-[16px]
             border
             border-[var(--line)]
             bg-white/90
-            px-3
-            py-1.5
-            text-[10px]
-            font-bold
-            text-[var(--ink)]
+            px-3.5
+            py-2
+            text-center
             shadow-sm
             backdrop-blur
-            sm:text-[11px]
           "
         >
-          {name}
-        </span>
+          <span
+            className="
+              block
+              text-[10px]
+              font-bold
+              text-[var(--ink)]
+              sm:text-[11px]
+            "
+          >
+            {title}
+          </span>
+
+          <span
+            className="
+              mt-0.5
+              block
+              text-[9px]
+              font-semibold
+              text-[var(--faint)]
+            "
+          >
+            {subtitle}
+          </span>
+        </div>
       </div>
     </div>
   );

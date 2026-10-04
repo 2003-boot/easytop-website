@@ -2,7 +2,7 @@ import { ArrowDown, Bell, Smartphone, Sparkles } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-import easytopIcon from '../assets/easytop-icon.jpg';
+import easytopIcon from '../assets/icon.png';
 
 export default function DownloadApp() {
   const sectionRef = useRef<HTMLElement | null>(null);

@@ -9,7 +9,7 @@ const WHATSAPP_URL =
 
 const navigation = [
   { label: 'Services', href: '#services' },
-  { label: 'Transferts', href: '#transferts' },
+  { label: 'Devenir partenaire', href: '#partenaires' },
   { label: 'Publicité', href: '#publicite' },
   { label: 'Partenariat', href: '#partenariat' },
 ];
@@ -28,7 +28,6 @@ export default function Footer() {
       "
     >
       <div className="page-container">
-
         {/* ===============================================
             TOP
         ================================================ */}
@@ -273,7 +272,7 @@ export default function Footer() {
                 {/*
                   On ne crée pas encore de fausses routes.
                   Quand les pages juridiques existeront,
-                  remplace les boutons par des <a>.
+                  remplace les éléments par des liens.
                 */}
 
                 <span
@@ -404,22 +403,44 @@ export default function Footer() {
           className="
             flex
             flex-col
-            gap-4
+            gap-5
             py-7
             sm:flex-row
             sm:items-center
             sm:justify-between
           "
         >
-          <p
-            className="
-              text-[10px]
-              font-semibold
-              text-[var(--faint)]
-            "
-          >
-            © {currentYear} EasyTop. Tous droits réservés.
-          </p>
+          <div>
+            <p
+              className="
+                text-[10px]
+                font-semibold
+                text-[var(--faint)]
+              "
+            >
+              © {currentYear} EasyTop. Tous droits réservés.
+            </p>
+
+            <p
+              className="
+                mt-1.5
+                text-[10px]
+                font-medium
+                text-[var(--faint)]
+              "
+            >
+              EasyTop est un produit de{' '}
+              <span
+                className="
+                  font-bold
+                  text-[var(--ink)]
+                "
+              >
+                SkyRecharge
+              </span>
+              .
+            </p>
+          </div>
 
           <div
             className="
@@ -448,7 +469,6 @@ export default function Footer() {
             </p>
           </div>
         </div>
-
       </div>
     </footer>
   );

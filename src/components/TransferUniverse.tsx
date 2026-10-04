@@ -13,7 +13,7 @@ import {
 
 import gsap from 'gsap';
 
-import easytopIcon from '../assets/easytop-icon.jpg';
+import easytopIcon from '../assets/icon.png';
 
 /*
  * =========================================================

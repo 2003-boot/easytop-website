@@ -1,3 +1,4 @@
+
 import {
   ArrowUp,
   ArrowUpRight,
@@ -9,9 +10,8 @@ const WHATSAPP_URL =
 
 const navigation = [
   { label: 'Services', href: '#services' },
-  { label: 'Devenir partenaire', href: '#partenaires' },
-  { label: 'Publicité', href: '#publicite' },
-  { label: 'Partenariat', href: '#partenariat' },
+  { label: 'Devenir cabiniste', href: '#partenaires' },
+  { label: 'Partenariat', href: '#publicite' },
 ];
 
 export default function Footer() {
@@ -28,9 +28,7 @@ export default function Footer() {
       "
     >
       <div className="page-container">
-        {/* ===============================================
-            TOP
-        ================================================ */}
+        {/* TOP */}
 
         <div
           className="
@@ -48,10 +46,7 @@ export default function Footer() {
           <div>
             <a
               href="#accueil"
-              className="
-                inline-flex
-                items-center
-              "
+              className="inline-flex items-center"
             >
               <span
                 className="
@@ -105,7 +100,7 @@ export default function Footer() {
             <a
               href={WHATSAPP_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="
                 group
                 mt-8
@@ -202,6 +197,7 @@ export default function Footer() {
               </p>
 
               <nav
+                aria-label="Navigation du pied de page"
                 className="
                   mt-6
                   flex
@@ -245,7 +241,7 @@ export default function Footer() {
               </nav>
             </div>
 
-            {/* Legal */}
+            {/* Informations */}
 
             <div>
               <p
@@ -270,9 +266,9 @@ export default function Footer() {
                 "
               >
                 {/*
-                  On ne crée pas encore de fausses routes.
-                  Quand les pages juridiques existeront,
-                  remplace les éléments par des liens.
+                  Les pages juridiques ne sont pas
+                  encore disponibles. Ne pas créer
+                  de liens fictifs.
                 */}
 
                 <span
@@ -309,9 +305,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ===============================================
-            MASSIVE BRAND
-        ================================================ */}
+        {/* GRAND LOGO */}
 
         <div
           className="
@@ -355,7 +349,7 @@ export default function Footer() {
               </span>
             </div>
 
-            {/* Back to top */}
+            {/* Retour en haut */}
 
             <a
               href="#accueil"
@@ -395,9 +389,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ===============================================
-            BOTTOM
-        ================================================ */}
+        {/* BAS DU FOOTER */}
 
         <div
           className="

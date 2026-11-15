@@ -101,6 +101,7 @@ export default function Advertising() {
       className="
         section
         relative
+        scroll-mt-[76px]
         overflow-hidden
         bg-white
       "

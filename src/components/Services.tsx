@@ -1,5 +1,5 @@
+
 import {
-  ArrowUpRight,
   PhoneCall,
   Signal,
   Smartphone,
@@ -12,8 +12,7 @@ const services = [
     description:
       "Rechargez votre crédit mobile en quelques instants, pour vous-même ou pour un proche.",
     icon: Smartphone,
-    className:
-      'lg:col-span-7 lg:row-span-2 min-h-[430px]',
+    className: 'lg:col-span-7 lg:row-span-2 min-h-[430px]',
     variant: 'primary',
   },
   {
@@ -22,8 +21,7 @@ const services = [
     description:
       "Choisissez le forfait qui vous convient et restez connecté quand vous en avez besoin.",
     icon: Signal,
-    className:
-      'lg:col-span-5 min-h-[250px]',
+    className: 'lg:col-span-5 min-h-[250px]',
     variant: 'soft',
   },
   {
@@ -32,8 +30,7 @@ const services = [
     description:
       "Accédez simplement aux offres d’appels disponibles auprès de votre opérateur.",
     icon: PhoneCall,
-    className:
-      'lg:col-span-5 min-h-[250px]',
+    className: 'lg:col-span-5 min-h-[250px]',
     variant: 'dark',
   },
 ];
@@ -46,9 +43,7 @@ export default function Services() {
     >
       <div className="page-container">
 
-        {/* =============================================
-            INTRODUCTION
-        ============================================== */}
+        {/* INTRODUCTION */}
 
         <div
           className="
@@ -73,16 +68,12 @@ export default function Services() {
                 text-[var(--ink)]
               "
             >
-              Votre téléphone
+              Effectuez vos recharges
               <br />
 
-              <span className="text-[var(--faint)]">
-                ne devrait jamais
+              <span className="text-[var(--blue)]">
+                en toute simplicité.
               </span>
-
-              <br />
-
-              vous ralentir.
             </h2>
           </div>
 
@@ -111,13 +102,7 @@ export default function Services() {
                 lg:justify-end
               "
             >
-              <span
-                className="
-                  h-[1px]
-                  w-10
-                  bg-[var(--line)]
-                "
-              />
+              <span className="h-[1px] w-10 bg-[var(--line)]" />
 
               <span
                 className="
@@ -134,9 +119,7 @@ export default function Services() {
           </div>
         </div>
 
-        {/* =============================================
-            SERVICE COMPOSITION
-        ============================================== */}
+        {/* CARTES DES SERVICES */}
 
         <div
           className="
@@ -154,22 +137,14 @@ export default function Services() {
           ))}
         </div>
 
-        {/* =============================================
-            BOTTOM STATEMENT
-        ============================================== */}
+        {/* TEXTE INFÉRIEUR */}
 
         <div
           className="
             mt-20
-            flex
-            flex-col
-            gap-8
             border-t
             border-[var(--line)]
             pt-8
-            md:flex-row
-            md:items-end
-            md:justify-between
           "
         >
           <p
@@ -189,42 +164,6 @@ export default function Services() {
               Plus de simplicité.
             </span>
           </p>
-
-          <a
-            href="#transferts"
-            className="
-              group
-              flex
-              shrink-0
-              items-center
-              gap-3
-              text-sm
-              font-bold
-              text-[var(--ink)]
-            "
-          >
-            Et pour vos transferts ?
-
-            <span
-              className="
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-                rounded-full
-                bg-[var(--blue-soft)]
-                text-[var(--blue)]
-                transition-all
-                duration-300
-                group-hover:rotate-45
-                group-hover:bg-[var(--blue)]
-                group-hover:text-white
-              "
-            >
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </a>
         </div>
 
       </div>
@@ -280,7 +219,7 @@ function ServiceCard({
         }
       `}
     >
-      {/* Number */}
+      {/* Numéro et icône */}
 
       <div
         className={`
@@ -330,7 +269,7 @@ function ServiceCard({
         </div>
       </div>
 
-      {/* Content */}
+      {/* Contenu */}
 
       <div
         className="
@@ -426,7 +365,7 @@ function ServiceCard({
         </div>
       </div>
 
-      {/* Background decorative number */}
+      {/* Numéro décoratif */}
 
       {!isPrimary && (
         <span
@@ -452,7 +391,7 @@ function ServiceCard({
         </span>
       )}
 
-      {/* Small hover line */}
+      {/* Animation au survol */}
 
       <div
         className={`

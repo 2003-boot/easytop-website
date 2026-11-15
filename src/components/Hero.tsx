@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowUpRight, Sparkles } from 'lucide-react';
+
+import { Apple, Play, Sparkles } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
@@ -7,6 +8,10 @@ import easytopIcon from '../assets/icon.png';
 export default function Hero() {
   const heroRef = useRef<HTMLElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
+
+  // Ajouter les liens officiels après publication.
+  const PLAY_STORE_URL = '';
+  const APP_STORE_URL = '';
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,17 +57,9 @@ export default function Hero() {
         pt-[76px]
       "
     >
-      {/* =================================================
-          DÉCOR
-      ================================================== */}
+      {/* DÉCOR */}
 
-      <div
-        className="
-          blue-glow
-          -right-[220px]
-          top-[80px]
-        "
-      />
+      <div className="blue-glow -right-[220px] top-[80px]" />
 
       <div
         className="
@@ -90,9 +87,7 @@ export default function Hero() {
         "
       />
 
-      {/* =================================================
-          HERO CONTENT
-      ================================================== */}
+      {/* HERO CONTENT */}
 
       <div
         className="
@@ -108,15 +103,10 @@ export default function Hero() {
           lg:py-10
         "
       >
-        {/* ===============================================
-            LEFT
-        ================================================ */}
+        {/* LEFT */}
 
         <div className="relative z-20">
-          <div
-            data-hero-reveal
-            className="eyebrow mb-7"
-          >
+          <div data-hero-reveal className="eyebrow mb-7">
             <span
               className="
                 h-2
@@ -195,7 +185,7 @@ export default function Hero() {
             simplifie vos services mobiles au quotidien.
           </p>
 
-          {/* Actions */}
+          {/* BOUTONS DE TÉLÉCHARGEMENT */}
 
           <div
             data-hero-reveal
@@ -208,26 +198,78 @@ export default function Hero() {
               sm:items-center
             "
           >
-            <a
-              href="#services"
-              className="btn-primary"
-            >
-              Découvrir EasyTop
+            {PLAY_STORE_URL ? (
+              <a
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary flex items-center gap-3"
+              >
+                <Play className="h-5 w-5 fill-current" />
+                Google Play
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                title="Bientôt disponible sur Google Play"
+                className="
+                  btn-primary
+                  flex
+                  cursor-not-allowed
+                  items-center
+                  gap-3
+                  opacity-65
+                "
+              >
+                <Play className="h-5 w-5 fill-current" />
 
-              <ArrowDown className="h-4 w-4" />
-            </a>
+                <span className="flex flex-col items-start leading-tight">
+                  <span className="text-[10px] font-medium">
+                    Bientôt sur
+                  </span>
+                  <span>Google Play</span>
+                </span>
+              </button>
+            )}
 
-            <a
-              href="#partenariat"
-              className="btn-secondary"
-            >
-              Devenir partenaire
+            {APP_STORE_URL ? (
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary flex items-center gap-3"
+              >
+                <Apple className="h-5 w-5" />
+                App Store
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                title="Bientôt disponible sur l'App Store"
+                className="
+                  btn-secondary
+                  flex
+                  cursor-not-allowed
+                  items-center
+                  gap-3
+                  opacity-65
+                "
+              >
+                <Apple className="h-5 w-5" />
 
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+                <span className="flex flex-col items-start leading-tight">
+                  <span className="text-[10px] font-medium">
+                    Bientôt sur
+                  </span>
+                  <span>App Store</span>
+                </span>
+              </button>
+            )}
           </div>
 
-          {/* Petit détail éditorial */}
+          {/* OPÉRATEURS */}
 
           <div
             data-hero-reveal
@@ -244,42 +286,22 @@ export default function Hero() {
             <div className="flex items-center">
               <span
                 className="
-                  relative
-                  z-30
-                  h-7
-                  w-7
-                  rounded-full
-                  border-2
-                  border-white
-                  bg-[#ff7900]
+                  relative z-30 h-7 w-7 rounded-full
+                  border-2 border-white bg-[#ff7900]
                 "
               />
 
               <span
                 className="
-                  relative
-                  z-20
-                  -ml-2
-                  h-7
-                  w-7
-                  rounded-full
-                  border-2
-                  border-white
-                  bg-[#ffcc00]
+                  relative z-20 -ml-2 h-7 w-7 rounded-full
+                  border-2 border-white bg-[#ffcc00]
                 "
               />
 
               <span
                 className="
-                  relative
-                  z-10
-                  -ml-2
-                  h-7
-                  w-7
-                  rounded-full
-                  border-2
-                  border-white
-                  bg-[#1597f5]
+                  relative z-10 -ml-2 h-7 w-7 rounded-full
+                  border-2 border-white bg-[#1597f5]
                 "
               />
             </div>
@@ -288,9 +310,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ===============================================
-            RIGHT — EASYTOP IDENTITY
-        ================================================ */}
+        {/* RIGHT — EASYTOP IDENTITY */}
 
         <div
           className="
@@ -302,7 +322,7 @@ export default function Hero() {
             lg:min-h-[650px]
           "
         >
-          {/* Grande orbite */}
+          {/* ORBITES */}
 
           <div
             className="
@@ -331,7 +351,7 @@ export default function Hero() {
             "
           />
 
-          {/* Texte orbital */}
+          {/* FLOATING LABEL */}
 
           <div
             className="
@@ -356,11 +376,10 @@ export default function Hero() {
             "
           >
             <Sparkles className="h-3.5 w-3.5 text-[var(--blue)]" />
-
             Simple par nature
           </div>
 
-          {/* Point orbital 1 */}
+          {/* POINTS */}
 
           <div
             className="
@@ -377,8 +396,6 @@ export default function Hero() {
             "
           />
 
-          {/* Point orbital 2 */}
-
           <div
             className="
               absolute
@@ -394,7 +411,7 @@ export default function Hero() {
             "
           />
 
-          {/* Halo principal */}
+          {/* HALO */}
 
           <div
             className="
@@ -409,7 +426,7 @@ export default function Hero() {
             "
           />
 
-          {/* Icône officielle */}
+          {/* LOGO EASYTOP */}
 
           <div
             ref={iconRef}
@@ -447,15 +464,8 @@ export default function Hero() {
               <img
                 src={easytopIcon}
                 alt="Icône de l'application EasyTop"
-                className="
-                  aspect-square
-                  h-full
-                  w-full
-                  object-cover
-                "
+                className="aspect-square h-full w-full object-cover"
               />
-
-              {/* reflet */}
 
               <div
                 className="
@@ -468,7 +478,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating label */}
+          {/* LABEL INFÉRIEUR */}
 
           <div
             className="
@@ -500,23 +510,14 @@ export default function Hero() {
               Une seule app
             </p>
 
-            <p
-              className="
-                mt-1
-                text-sm
-                font-bold
-                text-[var(--ink)]
-              "
-            >
+            <p className="mt-1 text-sm font-bold text-[var(--ink)]">
               Plusieurs possibilités.
             </p>
           </div>
         </div>
       </div>
 
-      {/* =================================================
-          BOTTOM MARKER
-      ================================================== */}
+      {/* INDICATEUR DE DÉFILEMENT */}
 
       <div
         className="

@@ -1,10 +1,9 @@
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import TransferUniverse from './components/TransferUniverse';
 import Advertising from './components/Advertising';
-import Partnership from './components/Partnership';
-import DownloadApp from './components/DownloadApp';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -13,12 +12,17 @@ export default function App() {
       <Navbar />
 
       <main>
+        {/* Présentation et téléchargement EasyTop */}
         <Hero />
+
+        {/* Achat d'unités, pass Internet et pass appel */}
         <Services />
+
+        {/* Recrutement des cabinistes EasyTop Agent */}
         <TransferUniverse />
+
+        {/* EasyTop Ads — partenariat publicitaire */}
         <Advertising />
-        <Partnership />
-        <DownloadApp />
       </main>
 
       <Footer />

@@ -3,8 +3,8 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Services', href: '#services' },
-  { label: 'Transferts', href: '#transferts' },
-  { label: 'Partenariat', href: '#partenariat' },
+  { label: 'Devenir cabiniste', href: '#partenaires' },
+  { label: 'Partenariat', href: '#publicite' },
 ];
 
 export default function Navbar() {
@@ -112,54 +112,16 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* CTA desktop */}
-            <div className="hidden items-center md:flex">
-              <a
-                href="#telecharger"
-                className="
-                  group
-                  flex
-                  items-center
-                  gap-2
-                  rounded-full
-                  bg-[var(--ink)]
-                  px-5
-                  py-2.5
-                  text-[13px]
-                  font-bold
-                  text-white
-                  transition-all
-                  duration-200
-                  hover:-translate-y-0.5
-                  hover:bg-[var(--blue)]
-                  hover:shadow-[0_12px_30px_rgba(21,151,245,0.22)]
-                "
-              >
-                Obtenir EasyTop
+            {/* Espace équilibrant le logo et la navigation */}
+            <div className="hidden w-[100px] md:block" aria-hidden="true" />
 
-                <ArrowUpRight
-                  className="
-                    h-4
-                    w-4
-                    transition-transform
-                    duration-200
-                    group-hover:translate-x-0.5
-                    group-hover:-translate-y-0.5
-                  "
-                />
-              </a>
-            </div>
-
-            {/* Menu mobile */}
+            {/* Bouton du menu mobile */}
             <button
               type="button"
               onClick={() => setMenuOpen((current) => !current)}
-              aria-label={
-                menuOpen
-                  ? 'Fermer le menu'
-                  : 'Ouvrir le menu'
-              }
+              aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
               aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               className="
                 flex
                 h-10
@@ -185,11 +147,10 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* =================================================
-          MOBILE MENU
-      ================================================== */}
-
+      {/* Menu mobile */}
       <div
+        id="mobile-navigation"
+        aria-hidden={!menuOpen}
         className={`
           fixed
           inset-0
@@ -198,7 +159,6 @@ export default function Navbar() {
           transition-all
           duration-300
           md:hidden
-
           ${
             menuOpen
               ? 'visible opacity-100'
@@ -229,6 +189,7 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
+                  tabIndex={menuOpen ? 0 : -1}
                   className="
                     group
                     flex
@@ -276,18 +237,6 @@ export default function Navbar() {
               ))}
             </nav>
 
-          </div>
-
-          <div className="pb-8">
-            <a
-              href="#telecharger"
-              onClick={closeMenu}
-              className="btn-primary w-full"
-            >
-              Obtenir EasyTop
-
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
           </div>
 
         </div>

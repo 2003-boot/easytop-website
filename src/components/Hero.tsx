@@ -1,5 +1,5 @@
 
-import { Apple, Play, Sparkles } from 'lucide-react';
+import {  Sparkles } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
@@ -9,9 +9,6 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
 
-  // Ajouter les liens officiels après publication.
-  const PLAY_STORE_URL = '';
-  const APP_STORE_URL = '';
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -184,91 +181,6 @@ export default function Hero() {
             pass appel depuis une seule plateforme. EasyTop
             simplifie vos services mobiles au quotidien.
           </p>
-
-          {/* BOUTONS DE TÉLÉCHARGEMENT */}
-
-          <div
-            data-hero-reveal
-            className="
-              mt-9
-              flex
-              flex-col
-              gap-3
-              sm:flex-row
-              sm:items-center
-            "
-          >
-            {PLAY_STORE_URL ? (
-              <a
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary flex items-center gap-3"
-              >
-                <Play className="h-5 w-5 fill-current" />
-                Google Play
-              </a>
-            ) : (
-              <button
-                type="button"
-                disabled
-                title="Bientôt disponible sur Google Play"
-                className="
-                  btn-primary
-                  flex
-                  cursor-not-allowed
-                  items-center
-                  gap-3
-                  opacity-65
-                "
-              >
-                <Play className="h-5 w-5 fill-current" />
-
-                <span className="flex flex-col items-start leading-tight">
-                  <span className="text-[10px] font-medium">
-                    Bientôt sur
-                  </span>
-                  <span>Google Play</span>
-                </span>
-              </button>
-            )}
-
-            {APP_STORE_URL ? (
-              <a
-                href={APP_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary flex items-center gap-3"
-              >
-                <Apple className="h-5 w-5" />
-                App Store
-              </a>
-            ) : (
-              <button
-                type="button"
-                disabled
-                title="Bientôt disponible sur l'App Store"
-                className="
-                  btn-secondary
-                  flex
-                  cursor-not-allowed
-                  items-center
-                  gap-3
-                  opacity-65
-                "
-              >
-                <Apple className="h-5 w-5" />
-
-                <span className="flex flex-col items-start leading-tight">
-                  <span className="text-[10px] font-medium">
-                    Bientôt sur
-                  </span>
-                  <span>App Store</span>
-                </span>
-              </button>
-            )}
-          </div>
-
           {/* OPÉRATEURS */}
 
           <div

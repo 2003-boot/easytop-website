@@ -9,9 +9,9 @@ const WHATSAPP_URL =
   'https://wa.me/2250161300716?text=Bonjour%20EasyTop%2C%20je%20souhaite%20obtenir%20des%20informations%20concernant%20EasyTop.';
 
 const navigation = [
-  { label: 'Services', href: '#services' },
-  { label: 'Devenir cabiniste', href: '#partenaires' },
-  { label: 'Partenariat', href: '#publicite' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Devenir cabiniste', href: '/#partenaires' },
+  { label: 'Partenariat', href: '/#publicite' },
 ];
 
 export default function Footer() {
@@ -154,7 +154,7 @@ export default function Footer() {
                     text-[var(--ink)]
                   "
                 >
-                  WhatsApp Business
+                  WhatsApp 
 
                   <ArrowUpRight
                     className="
@@ -271,35 +271,34 @@ export default function Footer() {
                   de liens fictifs.
                 */}
 
-                <span
+                
+                <a
+                  href="/conditions-utilisation"
                   className="
                     text-sm
                     font-bold
-                    text-[var(--faint)]
+                    text-[var(--muted)]
+                    transition-colors
+                    duration-200
+                    hover:text-[var(--blue)]
                   "
                 >
                   Conditions d’utilisation
-                </span>
+                </a>
 
-                <span
+                <a
+                  href="/politique-confidentialite"
                   className="
                     text-sm
                     font-bold
-                    text-[var(--faint)]
+                    text-[var(--muted)]
+                    transition-colors
+                    duration-200
+                    hover:text-[var(--blue)]
                   "
                 >
                   Politique de confidentialité
-                </span>
-
-                <span
-                  className="
-                    text-sm
-                    font-bold
-                    text-[var(--faint)]
-                  "
-                >
-                  Côte d’Ivoire
-                </span>
+                </a>
               </div>
             </div>
           </div>

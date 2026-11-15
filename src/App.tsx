@@ -6,22 +6,41 @@ import TransferUniverse from './components/TransferUniverse';
 import Advertising from './components/Advertising';
 import Footer from './components/Footer';
 
+import TermsOfUse from './components/TermsOfUse';
+import PrivacyPolicy from './components/PrivacyPolicy';
+
 export default function App() {
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  // Page : Conditions d'utilisation
+  if (pathname === '/conditions-utilisation') {
+    return (
+      <>
+        <TermsOfUse />
+        <Footer />
+      </>
+    );
+  }
+
+  // Page : Politique de confidentialité
+  if (pathname === '/politique-confidentialite') {
+    return (
+      <>
+        <PrivacyPolicy />
+        <Footer />
+      </>
+    );
+  }
+
+  // Page d'accueil
   return (
     <>
       <Navbar />
 
       <main>
-        {/* Présentation et téléchargement EasyTop */}
         <Hero />
-
-        {/* Achat d'unités, pass Internet et pass appel */}
         <Services />
-
-        {/* Recrutement des cabinistes EasyTop Agent */}
         <TransferUniverse />
-
-        {/* EasyTop Ads — partenariat publicitaire */}
         <Advertising />
       </main>
 
